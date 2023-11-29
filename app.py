@@ -2,6 +2,8 @@ import sqlite3
 import random
 from Flask import Flask, session, render_template, request, g
 
+
+## Basic Flask Set-up
 app = Flask(__name__)
 app.secret_key = 'komalisthebesttutor'
 app.config['SESSION_COOKIE_NAME'] = 'ilovecookies'
