@@ -2,37 +2,36 @@ import sqlite3
 import random
 from flask import Flask, session, render_template, request, g
 
-
-## Basic Flask Set-up
+## Basic Flask App
 app = Flask(__name__)
-app.secret_key = 'komalisthebesttutor'
-app.config['SESSION_COOKIE_NAME'] = 'ilovecookies'
+app.secret_key = "manbearpig_MUDMAN888"
+app.config["SESSION_COOKIE_NAME"] = "myCOOKIE_monSTER528"
 
 @app.route("/", methods=["POST", "GET"])
 def index():
-    session["all_items"], session["task_list"] = get_db()
+    session["all_items"], session["task_items"] = get_db()
     return render_template("index.html", all_items=session["all_items"],
-                                         task_list=session["task_list"])
+                                         task_items=session["task_items"])
 
 @app.route("/add_items", methods=["post"])
 def add_items():
-    session["task_list"].append(request.form["select_items"])
+    session["task_items"].append(request.form["select_items"])
     session.modified = True
     return render_template("index.html", all_items=session["all_items"],
-                                         task_list=session["task_list"])
+                                         task_items=session["task_items"])
 
 @app.route("/remove_items", methods=["post"])
 def remove_items():
     checked_boxes = request.form.getlist("check")
 
     for item in checked_boxes:
-        if item in session["task_list"]:
-            idx = session["task_list"].index(item)
-            session["task_list"].pop(idx)
+        if item in session["task_items"]:
+            idx = session["task_items"].index(item)
+            session["task_items"].pop(idx)
             session.modified = True
 
     return render_template("index.html", all_items=session["all_items"],
-                                         task_list=session["task_list"])
+                                         task_items=session["task_items"])
 
 def get_db():
     db = getattr(g, '_database', None)
