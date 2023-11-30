@@ -4,8 +4,8 @@ from flask import Flask, session, render_template, request, g
 
 ## Basic Flask App
 app = Flask(__name__)
-app.secret_key = "manbearpig_MUDMAN888"
-app.config["SESSION_COOKIE_NAME"] = "myCOOKIE_monSTER528"
+app.secret_key = "KOMALISTHEBESTTUTOR"
+app.config["SESSION_COOKIE_NAME"] = "ILOVECOOKIESHAHAHAH"
 
 @app.route("/", methods=["POST", "GET"])
 def index():
